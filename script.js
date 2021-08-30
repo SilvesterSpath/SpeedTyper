@@ -38,7 +38,7 @@ let randomWord;
 let score = 0;
 
 // Init time
-let time = 10;
+let time = 100;
 
 // Generate random word form 'array'
 function getRandomWord(){
