@@ -96,14 +96,21 @@ addWordToDOM();
 // Event listeners
 
 // Typing
-text.addEventListener('input', event => {
-  const insertedText = event.target.value;
+text.addEventListener('input', e => {
+  const insertedText = e.target.value;
   if(insertedText === randomWord){        
     updateScore();    
     addWordToDOM();
     // Clear input field
     e.target.value = "";
-    time += 3;
+    if(difficulty === 'easy'){
+      time += 3;
+    } else if (difficulty === 'medium'){
+      time += 2;
+    } else {
+      time += 1;
+    }
+ 
   }
 });
 
