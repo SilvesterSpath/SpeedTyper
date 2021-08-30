@@ -38,7 +38,13 @@ let randomWord;
 let score = 0;
 
 // Init time
-let time = 100;
+let time = 10;
+
+// Init Difficulty
+let difficulty = localStorage.getItem('difficulty') === null ? 'medium' : localStorage.getItem('difficulty')
+
+// Select selected difficulty value
+difficultySelect.value = difficulty
 
 // Generate random word form 'array'
 function getRandomWord(){
@@ -89,8 +95,9 @@ addWordToDOM();
 
 // Event listeners
 
-text.addEventListener('input', e => {
-  const insertedText = e.target.value;
+// Typing
+text.addEventListener('input', event => {
+  const insertedText = event.target.value;
   if(insertedText === randomWord){        
     updateScore();    
     addWordToDOM();
@@ -98,6 +105,17 @@ text.addEventListener('input', e => {
     e.target.value = "";
     time += 3;
   }
+});
+
+// Settings btn click 
+settingsBtn.addEventListener('click', ()=>{
+  settings.classList.toggle('hide')
+});
+
+// Setting select
+settingsForm.addEventListener('change', e =>{
+  difficulty = e.target.value;  
+  localStorage.setItem('difficulty', difficulty)
 })
 
 
